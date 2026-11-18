@@ -1,4 +1,4 @@
-# NyaySetu — Voice-First Vernacular Legal Triage & Lok Adalat Router
+# न्यायSetu — Voice-First Vernacular Legal Triage & Lok Adalat Router
 
 > **Code for India Hackathon 2026 (Code for a Billion) — Track 07: Timely Justice (Legal Backlog)**  
 > Built with **AgentFoundry (AF)** | Public Good · Pre-Litigation Settlement · Free Legal Aid Access
