@@ -1,4 +1,4 @@
-# Product Requirements Document (PRD) — NyaySetu
+# Product Requirements Document (PRD) — न्यायSetu
 
 **Version:** 1.0 (Hackathon MVP)  
 **Track:** 07 · Timely Justice — Legal Backlog  
@@ -10,7 +10,7 @@
 
 Over **5.61 crore cases** are pending across Indian courts as of July 2026, with **4.97 crore** concentrated in district courts ([Judicio / NJDG 2026](https://judicio.ai/blogs/indian-judiciary-pendency-statistics)). A major share of district-court friction comes from pre-litigation and early-stage bottlenecks: citizens receive English or dense legal notices they cannot understand, miss statutory reply windows, arrive at legal aid clinics without required documents, or enter regular civil/criminal queues for disputes eligible for **Lok Adalat** or **mediation**.
 
-**NyaySetu** solves the *first-mile triage gap* by converting messy paper notices and vernacular voice descriptions into structured, actionable legal-aid and settlement packets in under 3 minutes.
+**न्यायSetu** solves the *first-mile triage gap* by converting messy paper notices and vernacular voice descriptions into structured, actionable legal-aid and settlement packets in under 3 minutes.
 
 ---
 

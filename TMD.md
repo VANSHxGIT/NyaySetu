@@ -1,4 +1,4 @@
-# Technical Milestone & Design Document (TMD) — NyaySetu
+# Technical Milestone & Design Document (TMD) — न्यायSetu
 
 **Purpose:** Define exact data contracts, AgentFoundry build milestones, and verification tests for the 48-hour hackathon sprint.
 

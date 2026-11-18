@@ -1,4 +1,4 @@
-# System Architecture — NyaySetu
+# System Architecture — न्यायSetu
 
 **Platform:** AgentFoundry (AF) Multi-Agent Orchestration  
 **Design Goal:** Fast, verifiable, privacy-preserving legal document triage that runs on pure software with zero hardware dependencies.

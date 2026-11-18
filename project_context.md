@@ -1,6 +1,6 @@
-# Project Context — NyaySetu
+# Project Context — न्यायSetu
 
-This file provides shared domain, hackathon, and engineering context for developers and AI agents working inside **AgentFoundry (AF)** on **NyaySetu**.
+This file provides shared domain, hackathon, and engineering context for developers and AI agents working inside **AgentFoundry (AF)** on **न्यायSetu**.
 
 ---
 
@@ -27,7 +27,7 @@ This file provides shared domain, hackathon, and engineering context for develop
 
 ## 3. Product Boundaries & Non-Negotiables
 
-1. **Information & Triage, Not Legal Advice:** Every citizen-facing output must include a clear vernacular disclaimer stating that NyaySetu is an AI triage and preparation aid and does not replace a licensed advocate.
+1. **Information & Triage, Not Legal Advice:** Every citizen-facing output must include a clear vernacular disclaimer stating that न्यायSetu is an AI triage and preparation aid and does not replace a licensed advocate.
 2. **Zero Hallucinated Statutes or Dates:** Never fabricate case numbers, court dates, or statutory sections. If OCR confidence is low or a date is missing, explicitly mark it as `[Unverified — Check Original Document]`.
 3. **Privacy-First Intake:** Redact or mask Aadhaar numbers, bank account numbers, and personal phone numbers before logging pilot telemetry.
 4. **Built for Low-Literacy & Mobile First:** Citizens interact via a photo + 60-second voice note in vernacular languages; outputs must be scannable on a budget Android smartphone.
