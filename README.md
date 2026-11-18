@@ -61,8 +61,8 @@ India's justice system faces a massive, measurable bottleneck:
 ### Local Setup (AgentFoundry)
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-org>/न्यायSetu.git
-cd न्यायSetu
+git clone https://github.com/<your-org>/NyaySetu.git
+cd NyaySetu
 
 # 2. Configure environment variables
 cp .env.example .env
