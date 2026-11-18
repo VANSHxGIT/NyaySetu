@@ -15,20 +15,20 @@ India's justice system faces a massive, measurable bottleneck:
 
 ---
 
-## 2. The Solution: What NyaySetu Does
+## 2. The Solution: What न्यायSetu Does
 
-**NyaySetu** is a multi-agent legal triage and pre-litigation routing platform built in **AgentFoundry (AF)**. A citizen, paralegal, or law-clinic volunteer uploads a photo/PDF of a legal notice, FIR, summons, or dispute document—along with a short vernacular voice or text note—and receives two structured outputs in under 3 minutes:
+**न्यायSetu** is a multi-agent legal triage and pre-litigation routing platform built in **AgentFoundry (AF)**. A citizen, paralegal, or law-clinic volunteer uploads a photo/PDF of a legal notice, FIR, summons, or dispute document—along with a short vernacular voice or text note—and receives two structured outputs in under 3 minutes:
 
 1. **Citizen Plain-Language Brief (Vernacular):** Explains what the document means, who the parties are, the exact statutory deadline, and whether the dispute can be settled faster outside regular courts.
 2. **Paralegal & Duty-Lawyer Action Packet:** A 1-page chronological case summary, extracted legal sections, a missing-documents checklist, **Section 12 free legal-aid eligibility check**, and a **Lok Adalat / mediation readiness score**.
 
-*Disclaimer: NyaySetu provides legal information, triage, and procedural preparation—not formal legal representation.*
+*Disclaimer: न्यायSetu provides legal information, triage, and procedural preparation—not formal legal representation.*
 
 ---
 
 ## 3. Architecture Overview
 
-NyaySetu orchestrates four specialized agents inside AgentFoundry (see [`system_architecture.md`](./system_architecture.md) for full details):
+न्यायSetu orchestrates four specialized agents inside AgentFoundry (see [`system_architecture.md`](./system_architecture.md) for full details):
 1. **Vernacular Intake & PII-Masking Agent:** OCRs scanned notices/summons, transcribes voice notes (Hindi, English, and regional languages), and redacts sensitive identifiers before downstream reasoning.
 2. **Legal Triage & Deadline Agent:** Extracts parties, forum/jurisdiction, applicable statutes, and urgent limitation/hearing dates.
 3. **NALSA & Lok Adalat Eligibility Agent:** Evaluates free legal-aid eligibility and compoundable/pre-litigation settlement suitability.
@@ -40,7 +40,7 @@ NyaySetu orchestrates four specialized agents inside AgentFoundry (see [`system_
 
 *(Update this table with your 48-hour field pilot data before filing your submission issue, per [JUDGING.md](https://github.com/karlmehta/code-for-a-billion/blob/main/JUDGING.md).)*
 
-| Metric | Baseline (Manual) | With NyaySetu | Field Pilot Result |
+| Metric | Baseline (Manual) | With न्यायSetu | Field Pilot Result |
 | --- | --- | --- | --- |
 | **Citizens / Cases Triaged** | — | Target: 25–40 real cases | `TBD (log pilot count)` |
 | **Average Triage Time per Case** | ~45 minutes | < 3 minutes | `TBD (log avg minutes)` |
@@ -61,8 +61,8 @@ NyaySetu orchestrates four specialized agents inside AgentFoundry (see [`system_
 ### Local Setup (AgentFoundry)
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-org>/nyaysetu.git
-cd nyaysetu
+git clone https://github.com/<your-org>/न्यायSetu.git
+cd न्यायSetu
 
 # 2. Configure environment variables
 cp .env.example .env
