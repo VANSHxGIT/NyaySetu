@@ -3,9 +3,7 @@
 > **Code for India Hackathon 2026 (Code for a Billion) — Track 07: Timely Justice (Legal Backlog)**  
 > Built with **AgentFoundry (AF)** | Public Good · Pre-Litigation Settlement · Free Legal Aid Access
 
-**Demo Link:** *(Add live app / 2-minute walkthrough video URL before submission)*  
-**Submission Issue:** *(Link to your issue on [karlmehta/code-for-a-billion](https://github.com/karlmehta/code-for-a-billion/blob/main/JUDGING.md))*
-
+**Demo Link:**  
 ---
 
 ## 1. The Problem: Size & Severity
