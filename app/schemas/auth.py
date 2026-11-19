@@ -1,11 +1,12 @@
 """
 NyaySetu — Auth Schemas (Pydantic v2)
-- Strict validation on registration (password strength regex)
+- Strict validation on registration (password strength validation)
 - Email validation via Pydantic EmailStr
 - All fields typed — no raw strings accepted without constraints
 """
 
-from pydantic import BaseModel, EmailStr, Field
+import re
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 class RegisterRequest(BaseModel):
@@ -15,7 +16,6 @@ class RegisterRequest(BaseModel):
         ...,
         min_length=8,
         max_length=128,
-        pattern=r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{8,}$",
         description="Min 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 special character",
     )
     language: str = Field(
@@ -23,6 +23,19 @@ class RegisterRequest(BaseModel):
         pattern=r"^(en|hi|mr|ta|te|bn|gu|kn)$",
         description="Preferred language code",
     )
+
+    @field_validator("password")
+    @classmethod
+    def validate_password_strength(cls, v: str) -> str:
+        if not re.search(r"[A-Z]", v):
+            raise ValueError("Password must contain at least one uppercase letter")
+        if not re.search(r"[a-z]", v):
+            raise ValueError("Password must contain at least one lowercase letter")
+        if not re.search(r"\d", v):
+            raise ValueError("Password must contain at least one digit")
+        if not re.search(r"[@$!%*?&#^()\-_=+]", v):
+            raise ValueError("Password must contain at least one special character (@$!%*?&#^()-_=+)")
+        return v
 
 
 class LoginRequest(BaseModel):

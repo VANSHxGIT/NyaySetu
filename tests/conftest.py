@@ -1,6 +1,6 @@
 """
 NyaySetu — Test Configuration & Fixtures
-- Uses an in-memory or file-based SQLite async database for isolated testing
+- Uses an in-memory SQLite async database for isolated testing
 - Sets default test env vars before app import
 - Provides authenticated client fixtures
 - Isolates each test with fresh database state
@@ -9,7 +9,7 @@ NyaySetu — Test Configuration & Fixtures
 import os
 
 # Set test environment variables before any app imports
-os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///./test.db"
+os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///:memory:"
 os.environ["JWT_SECRET_KEY"] = "super_secret_test_jwt_key_that_is_at_least_32_characters_long_123456"
 os.environ["ADMIN_SECRET"] = "super_secret_admin_test_key_123456"
 os.environ["AGENTFOUNDRY_API_KEY"] = "af_test_key"
@@ -24,27 +24,32 @@ from typing import AsyncGenerator
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.pool import StaticPool
 
 from app.core.database import Base, get_db
 from app.core.security import create_access_token, hash_password
 from app.main import app
 from app.models.user import User
 
-# ── Test database (SQLite async) ──
-TEST_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
-test_engine = create_async_engine(TEST_DATABASE_URL, echo=False)
-TestSession = async_sessionmaker(test_engine, class_=AsyncSession, expire_on_commit=False)
-
 
 @pytest_asyncio.fixture
 async def db_session() -> AsyncGenerator[AsyncSession, None]:
-    """Create tables and yield a fresh session for each test."""
-    async with test_engine.begin() as conn:
+    """Create fresh in-memory tables and yield a clean session for each test."""
+    engine = create_async_engine(
+        "sqlite+aiosqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+    async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    async with TestSession() as session:
+
+    session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    async with session_factory() as session:
         yield session
-    async with test_engine.begin() as conn:
+
+    async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
+    await engine.dispose()
 
 
 @pytest_asyncio.fixture
