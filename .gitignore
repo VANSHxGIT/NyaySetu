@@ -1,0 +1,46 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Database
+*.sqlite3
+*.db
+
+# Backups (local)
+backups/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
