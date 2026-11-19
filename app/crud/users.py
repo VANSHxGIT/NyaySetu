@@ -5,8 +5,7 @@ NyaySetu — User CRUD Operations
 - Account lockout logic integrated
 """
 
-from datetime import datetime, timedelta, timezone
-from typing import Optional
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -16,13 +15,13 @@ from app.core.security import hash_password, verify_password
 from app.models.user import User
 
 
-async def get_user_by_email(db: AsyncSession, email: str) -> Optional[User]:
+async def get_user_by_email(db: AsyncSession, email: str) -> User | None:
     """Find a user by email address."""
     result = await db.execute(select(User).where(User.email == email))
     return result.scalar_one_or_none()
 
 
-async def get_user_by_id(db: AsyncSession, user_id: int) -> Optional[User]:
+async def get_user_by_id(db: AsyncSession, user_id: int) -> User | None:
     """Find a user by ID."""
     result = await db.execute(select(User).where(User.id == user_id))
     return result.scalar_one_or_none()
@@ -46,7 +45,7 @@ async def create_user(
 
 async def authenticate_user(
     db: AsyncSession, email: str, password: str
-) -> Optional[User]:
+) -> User | None:
     """
     Authenticate a user. Handles:
     - Account lockout check
@@ -68,7 +67,7 @@ async def authenticate_user(
 
         # Lock account if max attempts exceeded
         if user.failed_login_attempts >= settings.MAX_FAILED_ATTEMPTS:
-            user.locked_until = datetime.now(timezone.utc) + timedelta(
+            user.locked_until = datetime.now(UTC) + timedelta(
                 minutes=settings.LOCKOUT_DURATION_MINUTES
             )
 

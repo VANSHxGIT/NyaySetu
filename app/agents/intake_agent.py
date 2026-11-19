@@ -6,8 +6,7 @@ NyaySetu — Agent 1: Vernacular Intake & PII Masking
 """
 
 import re
-from typing import Any, Optional
-
+from typing import Any
 
 # ── PII Redaction Patterns ──
 PII_PATTERNS = [
@@ -36,7 +35,7 @@ async def process_intake(
     file_content: bytes,
     file_type: str,
     language: str,
-    voice_text: Optional[str] = None,
+    voice_text: str | None = None,
 ) -> dict[str, Any]:
     """
     Agent 1: Process uploaded document and voice note.

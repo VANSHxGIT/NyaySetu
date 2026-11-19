@@ -20,7 +20,8 @@ os.environ["FORCE_HTTPS"] = "False"
 os.environ["ALLOWED_HOST"] = "test"
 os.environ["FRONTEND_URL"] = "http://test"
 
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
+
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
@@ -33,7 +34,7 @@ from app.models.user import User
 
 
 @pytest_asyncio.fixture
-async def db_session() -> AsyncGenerator[AsyncSession, None]:
+async def db_session() -> AsyncGenerator[AsyncSession]:
     """Create fresh in-memory tables and yield a clean session for each test."""
     engine = create_async_engine(
         "sqlite+aiosqlite:///:memory:",
@@ -53,7 +54,7 @@ async def db_session() -> AsyncGenerator[AsyncSession, None]:
 
 
 @pytest_asyncio.fixture
-async def client(db_session: AsyncSession) -> AsyncGenerator[AsyncClient, None]:
+async def client(db_session: AsyncSession) -> AsyncGenerator[AsyncClient]:
     """HTTP client with overridden DB dependency."""
     async def override_get_db():
         yield db_session

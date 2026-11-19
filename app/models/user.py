@@ -5,8 +5,7 @@ NyaySetu — User Model
 - Role-based access: 'user' or 'admin'
 """
 
-from datetime import datetime, timezone
-from typing import Optional
+from datetime import UTC, datetime
 
 from sqlalchemy import Boolean, DateTime, Integer, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -30,7 +29,7 @@ class User(Base):
 
     # ── Account lockout fields ──
     failed_login_attempts: Mapped[int] = mapped_column(Integer, default=0)
-    locked_until: Mapped[Optional[datetime]] = mapped_column(
+    locked_until: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
 
@@ -53,7 +52,7 @@ class User(Base):
         if self.locked_until is None:
             return False
         # Normalize to UTC comparison
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         target = self.locked_until
         if target.tzinfo is None:
             now = datetime.utcnow()

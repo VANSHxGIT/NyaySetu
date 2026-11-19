@@ -5,7 +5,7 @@ NyaySetu — Agent 3: NALSA & Lok Adalat Routing
 - Rule-based logic for compoundable offences
 """
 
-from typing import Any, Optional
+from typing import Any
 
 # ── Lok Adalat Eligible Categories ──
 LOK_ADALAT_CATEGORIES = {
@@ -33,8 +33,8 @@ LEGAL_AID_CATEGORIES = {
 
 async def evaluate_routing(
     extraction: dict[str, Any],
-    annual_income_band: Optional[str] = None,
-    dispute_nature: Optional[str] = None,
+    annual_income_band: str | None = None,
+    dispute_nature: str | None = None,
 ) -> dict[str, Any]:
     """
     Agent 3: Evaluate legal aid eligibility and Lok Adalat suitability.

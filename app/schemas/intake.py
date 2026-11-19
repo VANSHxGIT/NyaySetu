@@ -5,7 +5,7 @@ NyaySetu — Intake Schemas
 - Enforces legal aid eligibility question format
 """
 
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -18,20 +18,16 @@ class IntakeRequest(BaseModel):
     language: Literal["en", "hi", "mr", "ta", "te", "bn", "gu", "kn"] = Field(
         default="hi", description="User's preferred language"
     )
-    voice_text: Optional[str] = Field(
+    voice_text: str | None = Field(
         None,
         max_length=2000,
         description="Transcribed voice note or additional text context",
     )
 
     # ── Legal Aid Eligibility (Section 12) ──
-    annual_income_band: Optional[Literal[
-        "below_threshold", "above_threshold", "unknown"
-    ]] = None
-    category_flags: Optional[list[Literal[
-        "woman", "child", "sc_st", "disability", "industrial_workman", "none"
-    ]]] = Field(default=None, max_length=6)
-    dispute_nature: Optional[str] = Field(None, max_length=200)
+    annual_income_band: Literal["below_threshold", "above_threshold", "unknown"] | None = None
+    category_flags: list[Literal["woman", "child", "sc_st", "disability", "industrial_workman", "none"]] | None = Field(default=None, max_length=6)
+    dispute_nature: str | None = Field(None, max_length=200)
 
 
 class IntakeResponse(BaseModel):

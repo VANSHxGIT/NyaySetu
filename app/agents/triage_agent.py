@@ -5,12 +5,12 @@ NyaySetu — Agent 2: Legal Triage & Deadline Extraction
 - Every claim includes source_quote from the original text
 """
 
-from typing import Any, Optional
+from typing import Any
 
 
 async def extract_legal_data(
     cleaned_text: str,
-    voice_context: Optional[str] = None,
+    voice_context: str | None = None,
 ) -> dict[str, Any]:
     """
     Agent 2: Extract structured legal data from cleaned text.

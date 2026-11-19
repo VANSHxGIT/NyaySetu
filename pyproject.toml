@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "S"]
+ignore = [
+    "E501",  # Line length (handled by formatter)
+    "B008",  # FastAPI standard dependency injection: Depends(...) in default args
+    "S101",  # Use of assert (valid in tests and invariants)
+    "S105",  # Possible hardcoded password in test cases
+    "S106",  # Possible hardcoded password in test cases
+    "S104",  # Possible binding to all interfaces (localhost/0.0.0.0 checks)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S"]
+"app/cli.py" = ["T201"]

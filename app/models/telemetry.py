@@ -6,7 +6,6 @@ NyaySetu — Telemetry Model (Anonymized Pilot Metrics)
 """
 
 from datetime import datetime
-from typing import Optional
 
 from sqlalchemy import DateTime, Float, Integer, String, func
 from sqlalchemy.orm import Mapped, mapped_column
@@ -33,8 +32,8 @@ class TelemetryEvent(Base):
     )  # lok_adalat, legal_aid, regular_court, etc.
 
     # ── Comprehension scores (before/after) ──
-    comprehension_pre: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)  # 1-5
-    comprehension_post: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)  # 1-5
+    comprehension_pre: Mapped[int | None] = mapped_column(Integer, nullable=True)  # 1-5
+    comprehension_post: Mapped[int | None] = mapped_column(Integer, nullable=True)  # 1-5
 
     # ── Timestamp ──
     created_at: Mapped[datetime] = mapped_column(

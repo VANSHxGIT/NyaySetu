@@ -6,7 +6,7 @@ NyaySetu — Case CRUD Operations
 """
 
 import secrets
-from typing import Any, Optional
+from typing import Any
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -65,7 +65,7 @@ async def get_user_cases(
 
 async def get_case_by_ref(
     db: AsyncSession, case_ref: str, user_id: int
-) -> Optional[Case]:
+) -> Case | None:
     """
     Get a single case by reference — MUST belong to the requesting user.
     """

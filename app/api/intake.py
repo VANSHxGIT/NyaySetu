@@ -7,7 +7,6 @@ NyaySetu — Document Intake Endpoint
 """
 
 import time
-from typing import Optional
 
 import bleach
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
@@ -24,7 +23,7 @@ from app.schemas.intake import ALLOWED_MIME_TYPES, MAX_FILE_SIZE_BYTES, IntakeRe
 router = APIRouter(prefix="/intake", tags=["Document Intake"])
 
 
-def _sanitize_text(text: Optional[str]) -> Optional[str]:
+def _sanitize_text(text: str | None) -> str | None:
     """Strip HTML/script injection from user text input."""
     if text is None:
         return None
@@ -35,9 +34,9 @@ def _sanitize_text(text: Optional[str]) -> Optional[str]:
 async def upload_document(
     file: UploadFile = File(..., description="Legal document (image/PDF/audio)"),
     language: str = Form(default="hi"),
-    voice_text: Optional[str] = Form(default=None),
-    annual_income_band: Optional[str] = Form(default=None),
-    dispute_nature: Optional[str] = Form(default=None),
+    voice_text: str | None = Form(default=None),
+    annual_income_band: str | None = Form(default=None),
+    dispute_nature: str | None = Form(default=None),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):

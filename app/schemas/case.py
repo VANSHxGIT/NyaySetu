@@ -5,43 +5,43 @@ NyaySetu — Case Schemas
 """
 
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
 
 class ExtractionData(BaseModel):
     """Structured extraction from Agent 2."""
-    sender: Optional[str] = None
-    recipient: Optional[str] = None
-    forum_or_jurisdiction: Optional[str] = None
-    statutory_sections: Optional[list[str]] = None
-    claim_amount_inr: Optional[float] = None
-    urgent_deadline: Optional[str] = None
-    source_quotes: Optional[list[str]] = None
+    sender: str | None = None
+    recipient: str | None = None
+    forum_or_jurisdiction: str | None = None
+    statutory_sections: list[str] | None = None
+    claim_amount_inr: float | None = None
+    urgent_deadline: str | None = None
+    source_quotes: list[str] | None = None
 
 
 class RoutingData(BaseModel):
     """Routing decision from Agent 3."""
-    legal_aid_eligible: Optional[bool] = None
-    legal_aid_reason: Optional[str] = None
-    lok_adalat_fit: Optional[str] = None  # high, medium, low
-    lok_adalat_reason: Optional[str] = None
-    recommended_next_forum: Optional[str] = None
+    legal_aid_eligible: bool | None = None
+    legal_aid_reason: str | None = None
+    lok_adalat_fit: str | None = None  # high, medium, low
+    lok_adalat_reason: str | None = None
+    recommended_next_forum: str | None = None
 
 
 class CaseResponse(BaseModel):
     """Full case response — user sees only their own cases."""
     id: int
     case_ref: str
-    document_type: Optional[str] = None
+    document_type: str | None = None
     language: str
     status: str
-    extraction: Optional[dict[str, Any]] = None
-    routing: Optional[dict[str, Any]] = None
-    citizen_summary: Optional[str] = None
-    paralegal_brief: Optional[str] = None
-    missing_documents: Optional[list[Any]] = None
+    extraction: dict[str, Any] | None = None
+    routing: dict[str, Any] | None = None
+    citizen_summary: str | None = None
+    paralegal_brief: str | None = None
+    missing_documents: list[Any] | None = None
     created_at: datetime
     updated_at: datetime
 

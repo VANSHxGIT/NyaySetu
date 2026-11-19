@@ -6,9 +6,9 @@ NyaySetu — Case Model
 """
 
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, func, JSON
+from sqlalchemy import JSON, DateTime, ForeignKey, Integer, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -29,20 +29,20 @@ class Case(Base):
     )  # e.g. "anon_8f2a9c"
 
     # ── Document info ──
-    document_type: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    document_type: Mapped[str | None] = mapped_column(String(100), nullable=True)
     language: Mapped[str] = mapped_column(String(10), default="hi")
     status: Mapped[str] = mapped_column(
         String(30), default="pending"
     )  # pending, processing, completed, failed
 
     # ── Extracted data (JSON) ──
-    extraction: Mapped[Optional[dict[str, Any]]] = mapped_column(JSONType, nullable=True)
-    routing: Mapped[Optional[dict[str, Any]]] = mapped_column(JSONType, nullable=True)
+    extraction: Mapped[dict[str, Any] | None] = mapped_column(JSONType, nullable=True)
+    routing: Mapped[dict[str, Any] | None] = mapped_column(JSONType, nullable=True)
 
     # ── Generated outputs ──
-    citizen_summary: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    paralegal_brief: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    missing_documents: Mapped[Optional[list[Any]]] = mapped_column(JSONType, nullable=True)
+    citizen_summary: Mapped[str | None] = mapped_column(Text, nullable=True)
+    paralegal_brief: Mapped[str | None] = mapped_column(Text, nullable=True)
+    missing_documents: Mapped[list[Any] | None] = mapped_column(JSONType, nullable=True)
 
     # ── Timestamps ──
     created_at: Mapped[datetime] = mapped_column(

@@ -4,8 +4,8 @@ Loads all settings from .env via Pydantic BaseSettings.
 Crashes on startup if any required secret is missing.
 """
 
-from pydantic_settings import BaseSettings
 from pydantic import Field
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):

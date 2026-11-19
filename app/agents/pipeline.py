@@ -7,21 +7,21 @@ Runs the 4-agent triage chain:
   4. Dual Output Synthesis
 """
 
-from typing import Any, Optional
+from typing import Any
 
 from app.agents.intake_agent import process_intake
-from app.agents.triage_agent import extract_legal_data
-from app.agents.routing_agent import evaluate_routing
 from app.agents.output_agent import generate_outputs
+from app.agents.routing_agent import evaluate_routing
+from app.agents.triage_agent import extract_legal_data
 
 
 async def run_triage_pipeline(
     file_content: bytes,
     file_type: str,
     language: str,
-    voice_text: Optional[str] = None,
-    annual_income_band: Optional[str] = None,
-    dispute_nature: Optional[str] = None,
+    voice_text: str | None = None,
+    annual_income_band: str | None = None,
+    dispute_nature: str | None = None,
 ) -> dict[str, Any]:
     """
     Run the full 4-agent triage pipeline.

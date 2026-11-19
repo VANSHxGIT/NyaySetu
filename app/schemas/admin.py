@@ -4,7 +4,6 @@ NyaySetu — Admin Schemas
 """
 
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, EmailStr, Field
 
@@ -24,7 +23,7 @@ class UserAdminView(BaseModel):
     language: str
     is_active: bool
     failed_login_attempts: int
-    locked_until: Optional[datetime] = None
+    locked_until: datetime | None = None
     created_at: datetime
     total_cases: int = 0
 

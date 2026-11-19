@@ -6,8 +6,7 @@ NyaySetu — Refresh Token CRUD
 """
 
 import hashlib
-from datetime import datetime, timedelta, timezone
-from typing import Optional
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -28,7 +27,7 @@ async def store_refresh_token(
     rt = RefreshToken(
         user_id=user_id,
         token_hash=_hash_token(token),
-        expires_at=datetime.now(timezone.utc)
+        expires_at=datetime.now(UTC)
         + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
     )
     db.add(rt)
@@ -38,10 +37,10 @@ async def store_refresh_token(
 
 async def validate_refresh_token(
     db: AsyncSession, token: str
-) -> Optional[RefreshToken]:
+) -> RefreshToken | None:
     """Find a valid (non-revoked, non-expired) refresh token."""
     token_hash = _hash_token(token)
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     result = await db.execute(
         select(RefreshToken).where(
             RefreshToken.token_hash == token_hash,

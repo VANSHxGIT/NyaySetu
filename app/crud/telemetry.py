@@ -5,7 +5,7 @@ NyaySetu — Telemetry CRUD Operations
 """
 
 import secrets
-from typing import Any, Optional
+from typing import Any
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -19,8 +19,8 @@ async def log_telemetry_event(
     language: str,
     triage_duration_seconds: float,
     routing_decision: str,
-    comprehension_pre: Optional[int] = None,
-    comprehension_post: Optional[int] = None,
+    comprehension_pre: int | None = None,
+    comprehension_post: int | None = None,
 ) -> TelemetryEvent:
     """Log an anonymized triage event."""
     event = TelemetryEvent(
