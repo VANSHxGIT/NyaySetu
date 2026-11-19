@@ -44,7 +44,7 @@ async def validate_refresh_token(
     result = await db.execute(
         select(RefreshToken).where(
             RefreshToken.token_hash == token_hash,
-            RefreshToken.is_revoked == False,
+            RefreshToken.is_revoked.is_(False),
         )
     )
     rt = result.scalar_one_or_none()
@@ -78,7 +78,7 @@ async def revoke_all_user_tokens(db: AsyncSession, user_id: int) -> None:
     result = await db.execute(
         select(RefreshToken).where(
             RefreshToken.user_id == user_id,
-            RefreshToken.is_revoked == False,
+            RefreshToken.is_revoked.is_(False),
         )
     )
     for rt in result.scalars().all():

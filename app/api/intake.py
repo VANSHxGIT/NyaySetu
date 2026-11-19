@@ -130,4 +130,4 @@ async def upload_document(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Triage processing failed. Please try again.",
-        )
+        ) from None

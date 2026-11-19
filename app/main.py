@@ -34,6 +34,11 @@ from app.core.exceptions import (
     validation_exception_handler,
 )
 from app.core.rate_limit import limiter, rate_limit_exceeded_handler
+from app.api.admin import router as admin_router
+from app.api.auth import router as auth_router
+from app.api.cases import router as cases_router
+from app.api.health import router as health_router
+from app.api.intake import router as intake_router
 
 # ── Configure structured logging ──
 structlog.configure(
@@ -177,12 +182,6 @@ if settings.FORCE_HTTPS:
 # ═══════════════════════════════════════════
 # Register API Routers
 # ═══════════════════════════════════════════
-from app.api.admin import router as admin_router
-from app.api.auth import router as auth_router
-from app.api.cases import router as cases_router
-from app.api.health import router as health_router
-from app.api.intake import router as intake_router
-
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(intake_router)
