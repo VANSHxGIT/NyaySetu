@@ -41,6 +41,7 @@ class TestDataIsolation:
             "/my/cases",
             headers={"Authorization": f"Bearer {token_a}"},
         )
+        print("DEBUG RESPONSE:", response.status_code, response.json())
         assert response.status_code == 200
         data = response.json()
         # User A should see only their case
