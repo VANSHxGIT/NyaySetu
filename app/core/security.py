@@ -5,9 +5,10 @@ NyaySetu — Password Hashing & JWT Token Management
 - Constant-time password comparison to prevent timing attacks
 """
 
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from typing import Optional
 
-from jose import JWTError, jwt
+import jwt
 from passlib.context import CryptContext
 
 from app.core.config import settings
@@ -28,13 +29,13 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 # ── JWT Tokens ──
 def create_access_token(
-    data: dict, expires_delta: timedelta | None = None
+    data: dict, expires_delta: Optional[timedelta] = None
 ) -> str:
     """Create a short-lived JWT access token."""
     to_encode = data.copy()
     if "sub" in to_encode:
         to_encode["sub"] = str(to_encode["sub"])
-    expire = datetime.now(UTC) + (
+    expire = datetime.now(timezone.utc) + (
         expires_delta
         or timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     )
@@ -45,13 +46,13 @@ def create_access_token(
 
 
 def create_refresh_token(
-    data: dict, expires_delta: timedelta | None = None
+    data: dict, expires_delta: Optional[timedelta] = None
 ) -> str:
     """Create a long-lived JWT refresh token."""
     to_encode = data.copy()
     if "sub" in to_encode:
         to_encode["sub"] = str(to_encode["sub"])
-    expire = datetime.now(UTC) + (
+    expire = datetime.now(timezone.utc) + (
         expires_delta
         or timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
     )
@@ -61,12 +62,12 @@ def create_refresh_token(
     )
 
 
-def decode_token(token: str) -> dict | None:
+def decode_token(token: str) -> Optional[dict]:
     """Decode and validate a JWT token. Returns None if invalid."""
     try:
         payload = jwt.decode(
             token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM]
         )
         return payload
-    except JWTError:
+    except (jwt.PyJWTError, Exception):
         return None
