@@ -410,7 +410,6 @@ export const LadyJusticeSimulation: React.FC = () => {
     let rotationAngleY = 0.15;
     let rotationAngleX = 0.05;
     let targetAngleY = 0.15;
-    let lastTime = performance.now();
 
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -432,8 +431,6 @@ export const LadyJusticeSimulation: React.FC = () => {
 
     // Render loop
     const render = (currentTime: number) => {
-      lastTime = currentTime;
-
       const rect = canvas.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
