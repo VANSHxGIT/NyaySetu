@@ -1,0 +1,250 @@
+/* ═══════════════════════════════════════════════════════════════════
+   NyaySetu — Design Tokens & Void Stage Environment
+   Inspired by Dala (dala.craftedbygc.com)
+   Void canvas meets Electric Iris (#8052ff) & Saffron Spark (#ffb829)
+   Strictly zero harsh gradients, zero drop shadows, zero cards-in-a-row
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Colors */
+  --color-void: #000000;
+  --color-bone-white: #ffffff;
+  --color-ash-gray: #9a9a9a;
+  --color-silver-mist: #bdbdbd;
+  --color-electric-iris: #8052ff;
+  --color-electric-iris-hover: #7142f3;
+  --color-saffron-spark: #ffb829;
+  --color-deep-verdant: #15846e;
+
+  /* Typography — Font Stack */
+  --font-ppneuemontreal: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-nav-label: 14px;
+  --leading-nav-label: 1.2;
+  --tracking-nav-label: 0.025em;
+  --text-body: 18px;
+  --leading-body: 1.55;
+  --text-heading-2xs: 24px;
+  --leading-heading-2xs: 1.25;
+  --tracking-heading-2xs: -0.48px;
+  --text-heading-xs: 27px;
+  --leading-heading-xs: 1.1;
+  --text-subheading: 36px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 42px;
+  --leading-heading-sm: 1.15;
+  --tracking-heading-sm: -1.68px;
+  --text-heading: 48px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.68px;
+  --text-heading-lg: 78px;
+  --leading-heading-lg: 1.05;
+  --tracking-heading-lg: -3.12px;
+  --text-display: 104px;
+  --leading-display: 1.02;
+  --tracking-display: -4.2px;
+
+  /* Weights */
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing Scale (6px base) */
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-36: 36px;
+  --spacing-60: 60px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+
+  /* Radii */
+  --radius-buttons: 24px;
+  --radius-pills: 9999px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--color-void);
+  color: var(--color-bone-white);
+  font-family: var(--font-ppneuemontreal);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-bone-white);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: var(--font-ppneuemontreal);
+  font-weight: var(--font-weight-regular);
+}
+
+.headline-display {
+  font-size: clamp(48px, 7vw, var(--text-display));
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-bone-white);
+}
+
+.headline-lg {
+  font-size: clamp(38px, 5.5vw, var(--text-heading-lg));
+  line-height: var(--leading-heading-lg);
+  letter-spacing: var(--tracking-heading-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-bone-white);
+}
+
+.headline-sm {
+  font-size: clamp(28px, 3.5vw, var(--text-heading-sm));
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-bone-white);
+}
+
+.headline-2xs {
+  font-size: var(--text-heading-2xs);
+  line-height: var(--leading-heading-2xs);
+  letter-spacing: var(--tracking-heading-2xs);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-bone-white);
+}
+
+.body-light {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--font-weight-extralight);
+  color: var(--color-bone-white);
+}
+
+.body-mist {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--font-weight-extralight);
+  color: var(--color-silver-mist);
+}
+
+.eyebrow-label {
+  font-size: var(--text-nav-label);
+  line-height: var(--leading-nav-label);
+  letter-spacing: 0.35px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-saffron-spark);
+  text-transform: uppercase;
+}
+
+/* Buttons */
+.btn-primary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-electric-iris);
+  color: var(--color-bone-white);
+  border-radius: var(--radius-buttons);
+  padding: 14.4px 24px;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary-pill:hover {
+  opacity: 0.92;
+}
+
+.btn-ghost-link {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--color-bone-white);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.btn-ghost-link:hover {
+  color: var(--color-saffron-spark);
+}
+
+.btn-ghost-nav {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--color-ash-gray);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: color 0.15s ease;
+}
+
+.btn-ghost-nav:hover,
+.btn-ghost-nav.active {
+  color: var(--color-bone-white);
+}
+
+/* Layout Utilities */
+.container-constrained {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section-spacing {
+  padding-top: var(--spacing-96);
+  padding-bottom: var(--spacing-96);
+}
+
+/* Scrollbar Minimal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #222222;
+  border-radius: 3px;
+}
