@@ -17,7 +17,6 @@ interface Particle {
 export const LadyJusticeSimulation: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [activeFocus, setActiveFocus] = useState<'all' | 'scales' | 'sword'>('all');
-  const [isInteractive, setIsInteractive] = useState(true);
 
   // Mouse interaction state
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, isHovering: false });
@@ -411,11 +410,9 @@ export const LadyJusticeSimulation: React.FC = () => {
     let rotationAngleY = 0.15;
     let rotationAngleX = 0.05;
     let targetAngleY = 0.15;
-    let targetAngleX = 0.05;
     let lastTime = performance.now();
 
     const onMouseMove = (e: MouseEvent) => {
-      if (!isInteractive) return;
       const rect = canvas.getBoundingClientRect();
       const nx = (e.clientX - rect.left) / rect.width - 0.5;
       const ny = (e.clientY - rect.top) / rect.height - 0.5;
@@ -435,7 +432,6 @@ export const LadyJusticeSimulation: React.FC = () => {
 
     // Render loop
     const render = (currentTime: number) => {
-      const dt = (currentTime - lastTime) * 0.001;
       lastTime = currentTime;
 
       const rect = canvas.getBoundingClientRect();
@@ -559,7 +555,7 @@ export const LadyJusticeSimulation: React.FC = () => {
       canvas.removeEventListener('mouseleave', onMouseLeave);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [generateLadyJusticeParticles, isInteractive, activeFocus]);
+  }, [generateLadyJusticeParticles, activeFocus]);
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '520px', backgroundColor: '#000000', overflow: 'hidden' }}>

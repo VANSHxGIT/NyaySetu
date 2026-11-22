@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface NavbarProps {
   onOpenTOS: () => void;
@@ -15,8 +15,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onScrollToFramework,
   onScrollToTelemetry
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <header style={{
       position: 'fixed',
