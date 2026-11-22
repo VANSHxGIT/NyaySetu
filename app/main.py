@@ -16,6 +16,7 @@ Security controls enforced:
 - All cookies: Secure + HttpOnly + SameSite=Lax
 """
 
+import os
 import uuid
 from contextlib import asynccontextmanager
 
@@ -24,6 +25,7 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from fastapi.staticfiles import StaticFiles
 from slowapi.errors import RateLimitExceeded
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 
@@ -187,3 +189,10 @@ app.include_router(auth_router)
 app.include_router(intake_router)
 app.include_router(cases_router)
 app.include_router(admin_router)
+
+# ═══════════════════════════════════════════
+# Mount Frontend Static Assets
+# ═══════════════════════════════════════════
+if os.path.exists("frontend/dist"):
+    app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="frontend")
+
